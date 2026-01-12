@@ -41,7 +41,7 @@ export const Footer = () => {
 
         <div className="mt-8 pt-8 border-t border-border text-center">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} Christian Hansen. Built with React & TypeScript.
+            © {currentYear} Christian Hansen. Built with Next.js, React, and TypeScript.
           </p>
         </div>
       </div>

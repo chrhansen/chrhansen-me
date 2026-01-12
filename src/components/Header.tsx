@@ -1,6 +1,9 @@
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const navLinks = [
   { path: '/', label: 'Home' },
@@ -10,15 +13,18 @@ const navLinks = [
 ];
 
 export const Header = () => {
-  const location = useLocation();
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const isActive = (path: string) =>
+    path === "/" ? pathname === path : pathname.startsWith(path);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-6">
         <nav className="flex items-center justify-between h-16">
-          <Link 
-            to="/" 
+          <Link
+            href="/"
             className="font-display text-xl font-semibold text-foreground hover:text-primary transition-colors"
           >
             chr<span className="text-primary">hansen</span>
@@ -29,11 +35,9 @@ export const Header = () => {
             {navLinks.map(({ path, label }) => (
               <li key={path}>
                 <Link
-                  to={path}
+                  href={path}
                   className={`text-sm font-medium transition-colors hover:text-primary ${
-                    location.pathname === path 
-                      ? 'text-primary' 
-                      : 'text-muted-foreground'
+                    isActive(path) ? "text-primary" : "text-muted-foreground"
                   }`}
                 >
                   {label}
@@ -59,12 +63,10 @@ export const Header = () => {
               {navLinks.map(({ path, label }) => (
                 <li key={path}>
                   <Link
-                    to={path}
+                    href={path}
                     onClick={() => setIsMenuOpen(false)}
                     className={`block text-lg font-medium transition-colors hover:text-primary ${
-                      location.pathname === path 
-                        ? 'text-primary' 
-                        : 'text-muted-foreground'
+                      isActive(path) ? "text-primary" : "text-muted-foreground"
                     }`}
                   >
                     {label}

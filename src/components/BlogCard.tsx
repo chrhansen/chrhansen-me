@@ -1,49 +1,53 @@
-import { Link } from 'react-router-dom';
-import { Calendar, Clock, ArrowRight } from 'lucide-react';
-import type { BlogPost } from '@/data/posts';
+"use client";
+
+import Link from "next/link";
+import { Calendar, Clock, ArrowRight } from "lucide-react";
+import type { PostMeta } from "@/lib/posts-types";
 
 interface BlogCardProps {
-  post: BlogPost;
+  post: PostMeta;
   featured?: boolean;
 }
 
-const categoryColors: Record<BlogPost['category'], string> = {
-  software: 'bg-blue-500/20 text-blue-400',
-  skiing: 'bg-emerald-500/20 text-emerald-400',
-  projects: 'bg-purple-500/20 text-purple-400',
-  thoughts: 'bg-amber-500/20 text-amber-400',
+const categoryColors: Record<PostMeta["category"], string> = {
+  software: "bg-blue-500/20 text-blue-400",
+  skiing: "bg-emerald-500/20 text-emerald-400",
+  projects: "bg-purple-500/20 text-purple-400",
+  thoughts: "bg-amber-500/20 text-amber-400",
 };
 
-const categoryLabels: Record<BlogPost['category'], string> = {
-  software: 'Software',
-  skiing: 'Skiing',
-  projects: 'Projects',
-  thoughts: 'Thoughts',
+const categoryLabels: Record<PostMeta["category"], string> = {
+  software: "Software",
+  skiing: "Skiing",
+  projects: "Projects",
+  thoughts: "Thoughts",
 };
 
 export const BlogCard = ({ post, featured = false }: BlogCardProps) => {
-  const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  const formattedDate = new Date(post.date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 
   return (
-    <article 
+    <article
       className={`group bg-card rounded-xl border border-border hover:border-primary/50 transition-all hover-lift ${
-        featured ? 'p-8' : 'p-6'
+        featured ? "p-8" : "p-6"
       }`}
     >
-      <Link to={`/blog/${post.slug}`} className="block">
+      <Link href={`/blog/${post.slug}`} className="block">
         <div className="flex items-center gap-3 mb-4">
           <span className={`px-3 py-1 rounded-full text-xs font-medium ${categoryColors[post.category]}`}>
             {categoryLabels[post.category]}
           </span>
         </div>
 
-        <h3 className={`font-display font-semibold text-foreground group-hover:text-primary transition-colors mb-3 ${
-          featured ? 'text-2xl' : 'text-xl'
-        }`}>
+        <h3
+          className={`font-display font-semibold text-foreground group-hover:text-primary transition-colors mb-3 ${
+            featured ? "text-2xl" : "text-xl"
+          }`}
+        >
           {post.title}
         </h3>
 
