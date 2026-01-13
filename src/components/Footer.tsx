@@ -1,9 +1,9 @@
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, X as XIcon } from 'lucide-react';
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
+  { icon: Github, href: 'https://github.com/chrhansen', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/christianhansen/', label: 'LinkedIn' },
+  { icon: XIcon, href: 'https://x.com/chrhansen', label: 'X' },
   { icon: Mail, href: 'mailto:hello@chrhansen.me', label: 'Email' },
 ];
 
