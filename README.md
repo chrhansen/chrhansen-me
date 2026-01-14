@@ -84,6 +84,7 @@ Key locations:
 
 Lovable work happens on a dedicated branch:
 
+- Lovable project: https://lovable.dev/projects/4988865a-889f-46ad-9063-ded285165229
 - Branch: `lovable-dev` (remote: `origin/lovable-dev`)
 - Purpose: isolate UI experimentation and AI-generated changes from production-ready code in `main`.
 
@@ -95,13 +96,6 @@ Recommended flow:
 git fetch origin
 git checkout main
 git merge origin/lovable-dev
-```
-
-If you want more control, cherry-pick individual commits:
-
-```sh
-git checkout main
-git cherry-pick <commit-sha>
 ```
 
 Tips:
