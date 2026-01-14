@@ -1,73 +1,123 @@
-# Welcome to your Lovable project
+# chrhansen.me
 
-## Project info
+Personal website and blog for Christian Hansen, built with Next.js (App Router), MDX, and Tailwind CSS. The site statically exports to `out/` for GitHub Pages deployment, with blog content sourced from `content/posts/`.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Live site: https://chrhansen.me
 
-## How can I edit this code?
+## High-level overview
 
-There are several ways of editing your application.
+- Purpose: showcase portfolio work, writing, and content for `chrhansen.me`.
+- Rendering: Next.js App Router with static export (`output: "export"`).
+- Content: blog posts are MDX files compiled at build time.
+- Deployment: GitHub Pages (see `.github/workflows/`).
 
-**Use Lovable**
+## Working with blog posts
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+### Create a new post
 
-Changes made via Lovable will be committed automatically to this repo.
+1. Add a new MDX file to `content/posts/` with a kebab-case filename (this becomes the slug).
+2. Include frontmatter using the existing schema:
 
-**Use your preferred IDE**
+```mdx
+---
+title: "Post Title"
+excerpt: "Short summary used in listings and metadata."
+date: "2025-01-15"
+category: "software"
+readTime: "6 min read"
+coverImage: "/images/blog/post-title/cover.jpg"
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+# Post Title
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Write your content here...
+```
 
-Follow these steps:
+Notes:
+- `category` must be one of `software`, `skiing`, `projects`, or `thoughts` (see `src/lib/posts-types.ts`).
+- `coverImage` is optional and not currently rendered, but is available in post metadata.
+- The filename (minus `.mdx`) is the slug used in URLs under `/blog/[slug]`.
+
+### Add images
+
+- Store images in `public/` so they are served statically.
+- Recommended convention: `public/images/blog/<slug>/...`
+- Reference images in MDX with absolute paths from the site root:
+
+```md
+![Alt text](/images/blog/post-title/diagram.png)
+```
+
+### Preview locally
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Open `http://localhost:3000/blog` and navigate to your post. Static export preview:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```sh
+npm run build
+npm run preview
+```
 
-**Use GitHub Codespaces**
+## Project structure
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Key locations:
 
-## What technologies are used for this project?
+- `src/app/`: Next.js App Router routes and pages.
+- `src/components/`: shared React components (`src/components/ui/` is shadcn-ui).
+- `src/lib/`: utilities and server-only helpers (blog parsing lives in `src/lib/posts.ts`).
+- `content/posts/`: MDX source files for the blog.
+- `public/`: static assets (images, `favicon.ico`, `robots.txt`, etc).
+- `.github/workflows/`: GitHub Pages build/deploy workflow.
 
-This project is built with:
+### How Next.js is used here
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- App Router is the primary routing system (see `src/app/`).
+- Static export is enabled in `next.config.mjs` (`output: "export"`).
+- Blog pages are statically generated from MDX via `getPostSlugs()` and `generateStaticParams()` in `src/app/blog/[slug]/page.tsx`.
+- If deploying under a subpath, set `NEXT_PUBLIC_BASE_PATH` (see `next.config.mjs`).
 
-## How can I deploy this project?
+## Lovable workflow
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Lovable work happens on a dedicated branch:
 
-## Can I connect a custom domain to my Lovable project?
+- Lovable project: https://lovable.dev/projects/4988865a-889f-46ad-9063-ded285165229
+- Branch: `lovable-dev` (remote: `origin/lovable-dev`)
+- Purpose: isolate UI experimentation and AI-generated changes from production-ready code in `main`.
 
-Yes, you can!
+### Merging Lovable UI edits into main
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Recommended flow:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```sh
+git fetch origin
+git checkout main
+git merge origin/lovable-dev
+```
+
+Tips:
+- Resolve conflicts in `src/` and `public/` with a bias toward `main` unless you explicitly want the Lovable change.
+- After merging, run `npm run lint` and `npm run build` to validate the export.
+
+## Development commands
+
+- `npm run dev`: local dev server
+- `npm run build`: static export to `out/`
+- `npm run preview`: serve `out/` locally
+- `npm run lint`: lint the codebase
+
+## Conventions
+
+- Indentation: 2 spaces, use semicolons and double quotes in TS/TSX.
+- Imports: prefer the `@/` alias for `src/` modules.
+- Components: PascalCase filenames under `src/components/`.
+
+## Notes for future development
+
+- MDX is compiled at build time with `next-mdx-remote/rsc` (see `src/app/blog/[slug]/page.tsx`).
+- If you add new post categories, update `PostCategory` in `src/lib/posts-types.ts` and the category mappings in `src/app/blog/[slug]/page.tsx`.
+- For new shared UI, prefer `src/components/` and keep any shadcn additions under `src/components/ui/`.
+- The site is static-exported, so avoid runtime server-only features that require a Node server.
