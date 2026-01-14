@@ -80,7 +80,12 @@
     "typescript-eslint": "^8.38.0"
   },
   "overrides": {
+    "@eslint/eslintrc": {
+      "js-yaml": "^4.1.1"
+    },
     "glob": "^10.5.0",
-    "js-yaml": "^4.1.1"
+    "gray-matter": {
+      "js-yaml": "^3.14.2"
+    }
   }
 }
