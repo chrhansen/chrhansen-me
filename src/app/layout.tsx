@@ -5,6 +5,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Christian Hansen",
   description: "Personal website of Christian Hansen: software engineer, skier, writer.",
+  icons: {
+    icon: "/chrhansen-logo.png",
+    shortcut: "/chrhansen-logo.png",
+    apple: "/chrhansen-logo.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -10,37 +10,47 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: 'local-notes',
-    title: 'LocalNotes',
-    description: 'A privacy-focused, local-first note-taking app with real-time sync across devices using CRDTs.',
-    technologies: ['Rust', 'TypeScript', 'SQLite', 'WebAssembly'],
-    githubUrl: 'https://github.com',
+    id: 'shred-day',
+    title: 'shred-day',
+    description: 'Web App for https://shred.day. Where skiers keep track of their skiing days.',
+    technologies: ['TypeScript', 'Ruby on Rails', 'PostgreSQL', 'React'],
+    githubUrl: 'https://github.com/chrhansen/shred-day',
+    liveUrl: 'https://shred.day',
     status: 'active'
   },
   {
-    id: 'ski-tracker',
-    title: 'SkiMetrics',
-    description: 'GPS-based ski tracking app that analyzes your runs, calculates edge angles, and provides technique feedback.',
-    technologies: ['React Native', 'Node.js', 'PostgreSQL', 'MapBox'],
-    githubUrl: 'https://github.com',
-    liveUrl: 'https://example.com',
+    id: 'innput',
+    title: 'innput',
+    description: 'End-to-end encrypted forms. Signal, but for forms.',
+    technologies: ['TypeScript', 'React', 'Ruby on Rails', 'E2EE'],
+    githubUrl: 'https://github.com/chrhansen/innput',
+    liveUrl: 'https://innput.app',
     status: 'active'
   },
   {
-    id: 'code-review-bot',
-    title: 'ReviewBot',
-    description: 'AI-powered GitHub bot that provides intelligent code review suggestions and catches common issues.',
-    technologies: ['Python', 'OpenAI API', 'GitHub Actions'],
-    githubUrl: 'https://github.com',
+    id: 'poser',
+    title: 'poser',
+    description: 'A tool to give feedback on skiing techniques. Built by @chrhansen in Innsbruck, Austria.',
+    technologies: ['Python','Ruby on Rails','SAM2', 'PyTorch', 'SAM3D Body', 'React'],
+    githubUrl: 'https://github.com/chrhansen/poser',
+    liveUrl: 'https://poser.pro',
+    status: 'active'
+  },
+  {
+    id: 'pg-id',
+    title: 'pg-id',
+    description: 'ULID, but with fewer random bits, output as Base58, with prefix.',
+    technologies: ['PLpgSQL', 'PostgreSQL'],
+    githubUrl: 'https://github.com/chrhansen/pg-id',
     status: 'completed'
   },
   {
-    id: 'terminal-portfolio',
-    title: 'Terminal Portfolio',
-    description: 'An interactive terminal-style portfolio website built with React and styled-components.',
-    technologies: ['React', 'TypeScript', 'Styled Components'],
-    githubUrl: 'https://github.com',
-    liveUrl: 'https://example.com',
-    status: 'archived'
+    id: 'cobalt',
+    title: 'Cobalt.io',
+    description: 'PTaaS cybersecurity startup I co-founded.',
+    technologies: ['PTaaS', 'Cybersecurity', 'React', 'Ruby on Rails'],
+    githubUrl: 'https://github.com/cobalthq',
+    liveUrl: 'https://www.cobalt.io',
+    status: 'completed'
   }
 ];

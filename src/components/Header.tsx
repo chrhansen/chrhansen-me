@@ -1,15 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const navLinks = [
-  { path: '/', label: 'Home' },
-  { path: '/blog', label: 'Blog' },
-  { path: '/projects', label: 'Projects' },
-  { path: '/about', label: 'About' },
+  { path: "/", label: "Home" },
+  { path: "/blog", label: "Blog" },
+  { path: "/projects", label: "Projects" },
+  { path: "/about", label: "About" },
 ];
 
 export const Header = () => {
@@ -25,9 +26,18 @@ export const Header = () => {
         <nav className="flex items-center justify-between h-16">
           <Link
             href="/"
-            className="font-display text-xl font-semibold text-foreground hover:text-primary transition-colors"
+            className="flex items-center gap-2 font-display text-xl font-semibold text-foreground hover:text-primary transition-colors"
           >
-            chr<span className="text-primary">hansen</span>
+            <Image
+              src="/chrhansen-logo.png"
+              alt="Christian Hansen logo"
+              width={28}
+              height={28}
+              className="h-7 w-7 rounded"
+            />
+            <span>
+              chr<span className="text-primary">hansen</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

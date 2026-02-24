@@ -1,9 +1,9 @@
 ---
 title: "Building Innput: End-to-end encrypted forms"
 excerpt: "Why and how I built innput.app, from idea to proof-of-concept."
-date: "2026-02-23"
+date: "2026-02-24"
 category: "projects"
-readTime: "8 min read"
+readTime: "5 min read"
 coverImage: "/images/blog/building-innput-e2ee-forms/hero-innput.png"
 ---
 ## Why build an end-to-end encrypted form builder?
@@ -65,6 +65,16 @@ But we don't encrypt the whole submission. Let's say multiple choice, long text,
   ]}
 />
 
+## Conclusion
+This was a fun project. I turns out building E2EE web applications nowadays, is totally doable - especially with the help of AI coding agents. Modern browsers support [Web Crypto](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API) APIs natively, so there's less risk of relying on 3rd party cryptographic Javascript libraries.
+
+A challenge with E2EE SaaS apps is integrations. Integrations that _receive_ data (e.g. an embedded Innput form on a a customers own website) is straight-forward – we would just do client-side as we already do if data came in directly in innput.app.
+
+Integrations that _sends_ data are challenging. When the backend can't access clear text data, it's not straight-forward to send submissions (form answers) to a synced Google Sheet, Notion, Zapier, or elsewhere. There are ok-ish solutions: You could either keep the strict security model and use [homomorphic encryption](https://en.wikipedia.org/wiki/Homomorphic_encryption) now that [libraries](https://github.com/jonaschn/awesome-he?tab=readme-ov-file#libraries) implementing this exist. Alternativley, you could trade off some security, and allow the customer to run your code in an environment they control, e.g. AWS/GCP/Azure or their local machine.
+
+But that's a challenge for another time.
+
 ## Links
-I built [innput.app](https://innput.app).
-Source Code: [chrhansen/innput](https://github.com/chrhansen/innput)
+Innput: [https://innput.app](https://innput.app).
+
+Source Code: [https://github.com/chrhansen/innput](https://github.com/chrhansen/innput)

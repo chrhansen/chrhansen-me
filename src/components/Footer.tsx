@@ -1,10 +1,11 @@
-import { Github, Linkedin, Mail, X as XIcon } from 'lucide-react';
+import Image from "next/image";
+import { Github, Linkedin, Mail, X as XIcon } from "lucide-react";
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com/chrhansen', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://www.linkedin.com/in/christianhansen/', label: 'LinkedIn' },
-  { icon: XIcon, href: 'https://x.com/chrhansen', label: 'X' },
-  { icon: Mail, href: 'mailto:hello@chrhansen.me', label: 'Email' },
+  { icon: Github, href: "https://github.com/chrhansen", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/christianhansen/", label: "LinkedIn" },
+  { icon: XIcon, href: "https://x.com/chrhansen", label: "X" },
+  { icon: Mail, href: "mailto:christiandanmark@gmail.com", label: "Email" },
 ];
 
 export const Footer = () => {
@@ -15,9 +16,18 @@ export const Footer = () => {
       <div className="container mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
-            <p className="font-display text-lg font-semibold text-foreground">
-              chr<span className="text-primary">hansen</span>
-            </p>
+            <div className="flex items-center justify-center md:justify-start gap-2">
+              <Image
+                src="/chrhansen-logo.png"
+                alt="Christian Hansen logo"
+                width={28}
+                height={28}
+                className="h-7 w-7 rounded"
+              />
+              <p className="font-display text-lg font-semibold text-foreground">
+                chr<span className="text-primary">hansen</span>
+              </p>
+            </div>
             <p className="text-sm text-muted-foreground mt-1">
               Software Engineer & Ski Enthusiast
             </p>

@@ -1,4 +1,10 @@
+import Image from "next/image";
 import { MapPin, Briefcase, GraduationCap, Heart } from "lucide-react";
+import { projects } from "@/data/projects";
+
+const technologiesIWorkWith = Array.from(
+  new Set(projects.flatMap((project) => project.technologies)),
+);
 
 export default function AboutPage() {
   return (
@@ -12,19 +18,27 @@ export default function AboutPage() {
             <p className="text-xl text-muted-foreground leading-relaxed">
               A software engineer who thinks skiing is just applied physics.
             </p>
+            <div className="mt-6">
+              <Image
+                src="/chrhansen.jpeg"
+                alt="Christian Hansen"
+                width={220}
+                height={220}
+                className="rounded-xl border border-border object-cover"
+                priority
+              />
+            </div>
           </div>
 
           <div className="prose-custom text-lg mb-16">
             <p className="mb-6">
-              Hi, I'm Christian. I'm a software engineer based in Scandinavia with a passion for
-              building elegant, performant software and spending as much time as possible on the
+              Hi, I'm Christian. I'm a Danish software engineer based in Innsbruck, Austria with a passion for
+              building software and spending as much time as possible on the
               slopes.
             </p>
 
             <p className="mb-6">
-              By day, I work on distributed systems and developer tools. I'm particularly
-              interested in local-first architectures, Rust, and the intersection of performance and
-              developer experience.
+              By summer, I work on software. By winter, I work on my skiing technique, which is a never-ending project of its own.
             </p>
 
             <p className="mb-6">
@@ -33,8 +47,7 @@ export default function AboutPage() {
             </p>
 
             <p>
-              This blog is my space to think out loud about software, skiing, and the lessons
-              learned from building things. Thanks for stopping by.
+              This blog is my space to think out loud about fun stuff I build.
             </p>
           </div>
 
@@ -45,7 +58,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <h3 className="font-display font-semibold text-foreground mb-1">Location</h3>
-                <p className="text-muted-foreground text-sm">Scandinavia</p>
+                <p className="text-muted-foreground text-sm">Innsbruck, Austria</p>
               </div>
             </div>
 
@@ -65,7 +78,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <h3 className="font-display font-semibold text-foreground mb-1">Focus</h3>
-                <p className="text-muted-foreground text-sm">Distributed Systems, Rust, TypeScript</p>
+                <p className="text-muted-foreground text-sm">AI Coding, Software, Skiing</p>
               </div>
             </div>
 
@@ -75,7 +88,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <h3 className="font-display font-semibold text-foreground mb-1">Interests</h3>
-                <p className="text-muted-foreground text-sm">Skiing, Open Source, Music</p>
+                <p className="text-muted-foreground text-sm">Skiing, Building, Learning</p>
               </div>
             </div>
           </div>
@@ -85,20 +98,7 @@ export default function AboutPage() {
               Technologies I Work With
             </h2>
             <div className="flex flex-wrap gap-3">
-              {[
-                "TypeScript",
-                "Rust",
-                "Go",
-                "Python",
-                "React",
-                "Node.js",
-                "PostgreSQL",
-                "Redis",
-                "Docker",
-                "Kubernetes",
-                "AWS",
-                "WebAssembly",
-              ].map((skill) => (
+              {technologiesIWorkWith.map((skill) => (
                 <span
                   key={skill}
                   className="px-4 py-2 bg-secondary rounded-lg text-sm font-medium text-secondary-foreground"
@@ -117,7 +117,7 @@ export default function AboutPage() {
               Want to chat about software, skiing, or potential collaborations?
             </p>
             <a
-              href="mailto:hello@chrhansen.me"
+              href="mailto:christiandanmark@gmail.com"
               className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors"
             >
               Send me an email
