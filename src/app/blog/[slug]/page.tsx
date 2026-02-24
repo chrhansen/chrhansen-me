@@ -1,7 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { compileMDX } from "next-mdx-remote/rsc";
+import { MdxImageCarousel } from "@/components/MdxImageCarousel";
 import { getPostBySlug, getPostSlugs } from "@/lib/posts";
 import type { PostCategory } from "@/lib/posts-types";
 
@@ -45,6 +47,9 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
   const { content } = await compileMDX({
     source: post.content,
+    components: {
+      ImageCarousel: MdxImageCarousel,
+    },
   });
 
   const formattedDate = new Date(post.date).toLocaleDateString("en-US", {
@@ -75,6 +80,19 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
               {post.title}
             </h1>
+
+            {post.coverImage ? (
+              <div className="mb-6 overflow-hidden rounded-xl border border-border">
+                <Image
+                  src={post.coverImage}
+                  alt={post.title}
+                  width={1600}
+                  height={900}
+                  className="h-auto w-full"
+                  priority
+                />
+              </div>
+            ) : null}
 
             <div className="flex items-center gap-6 text-muted-foreground">
               <span className="flex items-center gap-2">

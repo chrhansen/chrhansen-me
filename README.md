@@ -1,123 +1,95 @@
 # chrhansen.me
 
-Personal website and blog for Christian Hansen, built with Next.js (App Router), MDX, and Tailwind CSS. The site statically exports to `out/` for GitHub Pages deployment, with blog content sourced from `content/posts/`.
+Personal site + blog for Christian Hansen.
 
 Live site: https://chrhansen.me
 
-## High-level overview
+## Stack
 
-- Purpose: showcase portfolio work, writing, and content for `chrhansen.me`.
-- Rendering: Next.js App Router with static export (`output: "export"`).
-- Content: blog posts are MDX files compiled at build time.
-- Deployment: GitHub Pages (see `.github/workflows/`).
+- Next.js App Router (`output: "export"`)
+- TypeScript + React
+- Tailwind CSS
+- MDX blog posts in `content/posts/`
+- GitHub Pages deploy via `.github/workflows/ci.yml`
 
-## Working with blog posts
+## Scripts
 
-### Create a new post
+- `npm run dev`: start local dev server
+- `npm run build`: static export build (`out/`)
+- `npm run preview`: serve static build from `out/`
+- `npm run lint`: run ESLint
 
-1. Add a new MDX file to `content/posts/` with a kebab-case filename (this becomes the slug).
-2. Include frontmatter using the existing schema:
+## Blog Authoring
+
+Create a file in `content/posts/<slug>.mdx`.
+The filename becomes URL `/blog/<slug>`.
+
+Frontmatter schema:
 
 ```mdx
 ---
-title: "Post Title"
-excerpt: "Short summary used in listings and metadata."
-date: "2025-01-15"
-category: "software"
-readTime: "6 min read"
-coverImage: "/images/blog/post-title/cover.jpg"
+title: "Post title"
+excerpt: "Short summary for cards + metadata."
+date: "2026-02-23"
+category: "projects"
+readTime: "5 min read"
+coverImage: "/images/blog/<slug>/hero.png"
 ---
-
-# Post Title
-
-Write your content here...
 ```
 
 Notes:
-- `category` must be one of `software`, `skiing`, `projects`, or `thoughts` (see `src/lib/posts-types.ts`).
-- `coverImage` is optional and not currently rendered, but is available in post metadata.
-- The filename (minus `.mdx`) is the slug used in URLs under `/blog/[slug]`.
 
-### Add images
+- `category` must be one of: `software`, `skiing`, `projects`, `thoughts`
+- `coverImage` is optional and rendered on the post page header
+- MDX supports custom `<ImageCarousel />` (wired in `src/app/blog/[slug]/page.tsx`)
 
-- Store images in `public/` so they are served statically.
-- Recommended convention: `public/images/blog/<slug>/...`
-- Reference images in MDX with absolute paths from the site root:
+Carousel usage:
 
-```md
-![Alt text](/images/blog/post-title/diagram.png)
+```mdx
+<ImageCarousel
+  images={[
+    { src: "/images/blog/<slug>/screen-1.png", alt: "Screen 1", caption: "Optional caption" },
+    { src: "/images/blog/<slug>/screen-2.png", alt: "Screen 2" },
+  ]}
+/>
 ```
 
-### Preview locally
+Store post images under `public/images/blog/<slug>/`.
+Reference with absolute paths from site root, e.g. `"/images/blog/<slug>/foo.png"`.
+
+## Local Preview
 
 ```sh
-npm i
+npm install
 npm run dev
 ```
 
-Open `http://localhost:3000/blog` and navigate to your post. Static export preview:
+Open `http://localhost:3000`.
+
+Static preview:
 
 ```sh
 npm run build
 npm run preview
 ```
 
-## Project structure
+## Project Layout
 
-Key locations:
+- `src/app/`: app routes/pages
+- `src/components/`: shared components
+- `src/components/ui/`: shadcn/ui primitives
+- `src/lib/posts.ts`: MDX loading + frontmatter parsing
+- `src/data/projects.ts`: projects page data
+- `content/posts/`: blog post source
+- `public/`: static assets
 
-- `src/app/`: Next.js App Router routes and pages.
-- `src/components/`: shared React components (`src/components/ui/` is shadcn-ui).
-- `src/lib/`: utilities and server-only helpers (blog parsing lives in `src/lib/posts.ts`).
-- `content/posts/`: MDX source files for the blog.
-- `public/`: static assets (images, `favicon.ico`, `robots.txt`, etc).
-- `.github/workflows/`: GitHub Pages build/deploy workflow.
+## Deployment
 
-### How Next.js is used here
+- PRs to `main`: CI build/lint runs
+- Push/merge to `main`: GitHub Pages deploy runs
 
-- App Router is the primary routing system (see `src/app/`).
-- Static export is enabled in `next.config.mjs` (`output: "export"`).
-- Blog pages are statically generated from MDX via `getPostSlugs()` and `generateStaticParams()` in `src/app/blog/[slug]/page.tsx`.
-- If deploying under a subpath, set `NEXT_PUBLIC_BASE_PATH` (see `next.config.mjs`).
+## Config Notes
 
-## Lovable workflow
-
-Lovable work happens on a dedicated branch:
-
-- Lovable project: https://lovable.dev/projects/4988865a-889f-46ad-9063-ded285165229
-- Branch: `lovable-dev` (remote: `origin/lovable-dev`)
-- Purpose: isolate UI experimentation and AI-generated changes from production-ready code in `main`.
-
-### Merging Lovable UI edits into main
-
-Recommended flow:
-
-```sh
-git fetch origin
-git checkout main
-git merge origin/lovable-dev
-```
-
-Tips:
-- Resolve conflicts in `src/` and `public/` with a bias toward `main` unless you explicitly want the Lovable change.
-- After merging, run `npm run lint` and `npm run build` to validate the export.
-
-## Development commands
-
-- `npm run dev`: local dev server
-- `npm run build`: static export to `out/`
-- `npm run preview`: serve `out/` locally
-- `npm run lint`: lint the codebase
-
-## Conventions
-
-- Indentation: 2 spaces, use semicolons and double quotes in TS/TSX.
-- Imports: prefer the `@/` alias for `src/` modules.
-- Components: PascalCase filenames under `src/components/`.
-
-## Notes for future development
-
-- MDX is compiled at build time with `next-mdx-remote/rsc` (see `src/app/blog/[slug]/page.tsx`).
-- If you add new post categories, update `PostCategory` in `src/lib/posts-types.ts` and the category mappings in `src/app/blog/[slug]/page.tsx`.
-- For new shared UI, prefer `src/components/` and keep any shadcn additions under `src/components/ui/`.
-- The site is static-exported, so avoid runtime server-only features that require a Node server.
+- `next.config.mjs` uses static export and `trailingSlash: true`
+- Dev build cache uses `.next-dev` to avoid collisions with production `.next`
+- Optional `NEXT_PUBLIC_BASE_PATH` supported for subpath deploys
