@@ -63,8 +63,7 @@ export default function HomePage() {
                 Software Development
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                Deep dives into Rust, TypeScript, system design, and the craft of building reliable
-                software.
+                Projects I'm currently working on. Often it's how I can use weird data sources just to see if it is possible. Rarely it's useful, but it's always fun.
               </p>
             </div>
 
@@ -73,11 +72,10 @@ export default function HomePage() {
                 <Mountain className="text-emerald-400" size={24} />
               </div>
               <h3 className="font-display text-lg font-semibold text-foreground mb-2">
-                Skiing Technique
+                Skiing Stuff
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                Analyzing the biomechanics of skiing with an engineer's perspective on technique
-                improvement.
+                Maybe I got excited about new ski tuning equipment that the world needs to hear about or I just conquered something new in skiing.
               </p>
             </div>
 
