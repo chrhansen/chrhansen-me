@@ -26,9 +26,7 @@ export default function HomePage() {
               className="text-xl text-muted-foreground leading-relaxed mb-8 animate-fade-in"
               style={{ animationDelay: "0.2s" }}
             >
-              I write about software development, skiing technique, and the lessons learned from
-              building things. Currently exploring local-first architectures and perfecting my
-              carving.
+              I write about software development, projects I start (and may or may not finish), and probably mention skiing here and there.
             </p>
             <div className="flex flex-wrap gap-4 animate-fade-in" style={{ animationDelay: "0.3s" }}>
               <Link
