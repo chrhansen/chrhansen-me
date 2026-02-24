@@ -51,15 +51,24 @@ The markdown implementation plans would be crucial in the past, to make sure tha
 ## Making Shred.day useful
 Anyway, after working on Shred.Day for a few months, I put it aside, for other shiny stuff. It was only at the beginning of this winter season, when I started using the app, that I realized all the little things that I wanted changed. I would say it's now actually useful! Please give it a try!
 
-<div className="flex flex-col md:flex-row md:items-start md:gap-6 my-6">
-  <img
-    src="/images/blog/ai-vibe-coding-shred-day/shred-day-days-list.png"
-    alt="Shred.day days list"
-    className="w-full md:w-1/2 mx-auto my-0"
-  />
-  <img
-    src="/images/blog/ai-vibe-coding-shred-day/shred-day-functions.png"
-    alt="Shred.day functions"
-    className="w-full md:w-1/2 mx-auto my-0"
+<div className="mx-auto w-4/5 md:w-2/3">
+  <ImageCarousel
+    images={[
+      {
+        src: "/images/blog/ai-vibe-coding-shred-day/shred-day-days-list.png",
+        alt: "Shred.day days list",
+        caption: "Days list",
+      },
+      {
+        src: "/images/blog/ai-vibe-coding-shred-day/shred-day-functions.png",
+        alt: "Shred.day functions",
+        caption: "Core functions",
+      },
+      {
+        src: "/images/blog/ai-vibe-coding-shred-day/shre-day-stats.png",
+        alt: "Shred.day stats",
+        caption: "Stats view",
+      },
+    ]}
   />
 </div>
