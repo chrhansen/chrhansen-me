@@ -19,7 +19,26 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+      "react-refresh/only-export-components": [
+        "warn",
+        {
+          allowConstantExport: true,
+          allowExportNames: [
+            "metadata",
+            "generateMetadata",
+            "generateStaticParams",
+            "viewport",
+            "generateViewport",
+            "revalidate",
+            "dynamic",
+            "dynamicParams",
+            "fetchCache",
+            "runtime",
+            "preferredRegion",
+            "maxDuration",
+          ],
+        },
+      ],
       "@typescript-eslint/no-unused-vars": "off",
     },
   },
