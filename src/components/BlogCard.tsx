@@ -11,6 +11,7 @@ interface BlogCardProps {
 
 const categoryColors: Record<PostMeta["category"], string> = {
   software: "bg-blue-500/20 text-blue-400",
+  "vibe-coding": "bg-fuchsia-500/20 text-fuchsia-400",
   skiing: "bg-emerald-500/20 text-emerald-400",
   projects: "bg-purple-500/20 text-purple-400",
   thoughts: "bg-amber-500/20 text-amber-400",
@@ -18,6 +19,7 @@ const categoryColors: Record<PostMeta["category"], string> = {
 
 const categoryLabels: Record<PostMeta["category"], string> = {
   software: "Software",
+  "vibe-coding": "Vibe Coding",
   skiing: "Skiing",
   projects: "Projects",
   thoughts: "Thoughts",

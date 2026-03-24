@@ -7,6 +7,7 @@ import type { PostCategory, PostMeta } from "@/lib/posts-types";
 const categories: { value: PostCategory | "all"; label: string }[] = [
   { value: "all", label: "All Posts" },
   { value: "software", label: "Software" },
+  { value: "vibe-coding", label: "Vibe Coding" },
   { value: "skiing", label: "Skiing" },
   { value: "projects", label: "Projects" },
   { value: "thoughts", label: "Thoughts" },

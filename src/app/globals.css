@@ -129,6 +129,10 @@
     @apply bg-muted p-4 rounded-lg overflow-x-auto my-6;
   }
 
+  .prose-custom pre code {
+    @apply bg-transparent p-0 rounded-none text-inherit;
+  }
+
   .prose-custom blockquote {
     @apply border-l-4 border-primary pl-4 italic text-muted-foreground my-6;
   }
@@ -136,6 +140,14 @@
   .prose-custom ul,
   .prose-custom ol {
     @apply pl-6 mb-4 space-y-2;
+  }
+
+  .prose-custom ul {
+    @apply list-disc;
+  }
+
+  .prose-custom ol {
+    @apply list-decimal;
   }
 
   .prose-custom li {
