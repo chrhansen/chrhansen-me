@@ -1,4 +1,4 @@
-export type PostCategory = "software" | "skiing" | "projects" | "thoughts";
+export type PostCategory = "software" | "skiing" | "projects" | "thoughts" | "vibe-coding";
 
 export interface PostMeta {
   slug: string;
