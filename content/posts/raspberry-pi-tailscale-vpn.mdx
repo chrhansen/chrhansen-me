@@ -1,7 +1,7 @@
 ---
 title: "How I Built a Home VPN with a Raspberry Pi and Tailscale"
 excerpt: "How I created an always-on VPN to watch Danish TV from Austria"
-date: "2026-03-20"
+date: "2026-03-27"
 category: "software"
 readTime: "5 min read"
 ---
@@ -72,12 +72,6 @@ That gave me two things right away:
 1. The Raspberry Pi joined my tailnet
 1. I could SSH to it from my laptop or even an SSH app on my phone, even when they're not on the same network, because they are once they join the Tailscale tailnet network
 
-<img
-  src="/images/blog/raspberry-pi-tailscale-vpn/devices-on-tailnet.png"
-  alt="Devices on my Tailnet"
-  className="w-full md:w-2/3 mx-auto"
-/>
-
 Isn't Tailscale awesome? I didn't know much about Tailscale before this project. Only used it once to test out [VibeTunnel](https://vibetunnel.sh), it is just so easy to connect your devices.
 
 I also configured Tailscale to start up when the Raspberry Pi booted up – it has to run as some kind of daemon. Just google it.
@@ -113,7 +107,14 @@ I obviously tried to make the package and myself look suspicious.
 
 
 ## 5. Couch Time
-Wayyyy too many days later, my brother-in-law texted me that the Pi had arrived and been connected. And immediately I could see it live in the Tailscale app on my phone.
+Wayyyy too many days later, my brother-in-law texted me that the Pi had arrived and been connected. And immediately I could see it live in the Tailscale app on my phone:
+
+<img
+  src="/images/blog/raspberry-pi-tailscale-vpn/devices-on-tailnet.png"
+  alt="Devices on my Tailnet"
+  className="w-full md:w-2/3 mx-auto"
+/>
+
 
 I turned on the TV ... and I was able to connect 🎉 !
 
